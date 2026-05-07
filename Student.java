@@ -1,9 +1,10 @@
 
 /**
- * Student 클래스의 설명을 작성하세요.
+ * Student 성적 처리를 위한 기본적인 요소를 
+ *         갖춘 학생 객체를 생성하기위한 클래스
  *
- * @author (작성자 이름)
- * @version (버전 번호 또는 작성한 날짜)
+ * @author (2021320032 임기홍)
+ * @version (2026 05 07)
  */
 public class Student
 {
