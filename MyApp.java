@@ -59,6 +59,13 @@ public class MyApp
         }
     }
     
+    /**
+     * 메소드 registerStudents
+     *
+     * @param stdb 과목별 학생들이 저장되어있는 2차원 배열
+     * @param counts 선택한 과목 코드 내 현재 학생수 파악을 위한 카운트 배열
+     * @return 문자열 반환
+     */
     public static String registerStudents(Student[][] stdb, int[] counts){
         
         System.out.println("과목 코드(0~9)를 입력해주세요");
@@ -106,5 +113,49 @@ public class MyApp
             System.out.println("등록 완료. 현재"+ counts[code] + "명");        
         }
         return "학생 등록 종료"; 
+    }
+    
+    /**
+     * 메소드 assignGrades
+     *
+     * @param stdb 파라미터
+     * @param counts 파라미터
+     * @return 반환값
+     */
+    public static String assignGrades(Student[] stdb, int[] counts){
+        
+        System.out.println("과목 코드(0~9)를 입력해주세요");
+        
+        int code;
+        try{
+            code = Integer.parseInt(gradeSC.nextLine());
+        }
+        catch(NumberFormatException e){
+            return "숫자를 입력해주세요";
+        }
+        
+        if(code <0 || code >9){
+            return "0~9 범위로 입력해주세요";
+        }
+        else if(counts[code] == 0){
+            return "등록된 학생이 없습니다";
+        }
+        
+        System.out.println("1.절대평가 2. 상대평가 번호를 입력해주세요");
+        
+        int choiceGrade = Integer.parseInt(gradeSC.nextLine());
+        
+        if(choiceGrade == 1){
+            // 절대평가 메소드실행, 
+            // 매개변수(stdb, counts, code)(학생수 = counts[code])
+        }
+        else if(choiceGrade == 2){
+            // 상대평가 메소드실행, 
+            // 매개변수(stdb, counts, code)(학생수 = counts[code])
+        }
+        else{
+            return "1 또는 2를 입력해주세요";
+        }
+        return "학점 부여 완료";
     }
 }
