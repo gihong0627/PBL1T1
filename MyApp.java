@@ -2,8 +2,8 @@ import java.util.Scanner;
 /**
  * MyApp 성적 처리 소프트웨어 실행 클래스.
  *
- * @author (2021320032 임기홍)
- * @version (2026 05 08)
+ * @author (2021320032 임기홍 2020315044 허진영)
+ * @version (2026 05 09)
  */
 public class MyApp
 {
@@ -145,12 +145,15 @@ public class MyApp
         }
         
         System.out.println(code + "번 과목 성적 리스트");
+        System.out.println("-------------------------");
         
         for(int i = 0; i < n; i++){
             
             Student s = stdb[code][i];
-            System.out.println(s.getStId() + " " + s.getName() + " " + s.getTotalScore() + " " + s.getGrade());
+            System.out.println(s.getStId() + " " + s.getName() + " | " + s.getTotalScore() + " | " + s.getGrade());
         }
+        System.out.println("-------------------------");
+        
         return "성적 출력 완료";
     }
 
