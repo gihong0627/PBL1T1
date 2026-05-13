@@ -158,6 +158,7 @@ public class MyApp
             Student s = stdb[code][i];
             System.out.println(s.getStId() + " " + s.getName() + " | " + s.getTotalScore() + " | " + s.getGrade());
         }
+        // 통계 메소드 실행 위치
         System.out.println("-------------------------");
         
         return "성적 출력 완료";
@@ -217,10 +218,10 @@ public class MyApp
             int rank = count + 1;
             double per = (double)rank / n * 100;
 
-            if(per <= 35){
+            if(per <= 40){
                 stdb[code][i].setGrade("A");
             }
-            else if(per <= 70){
+            else if(per <= 75){
                 stdb[code][i].setGrade("B");
             }
             else{
@@ -260,13 +261,9 @@ public class MyApp
         int choiceGrade = Integer.parseInt(gradeSC.nextLine());
 
         if(choiceGrade == 1){
-            // 절대평가 메소드실행, 
-            // 매개변수(stdb, counts, code)(학생수 = counts[code])
             absoluteGrade(stdb, counts, code);
         }
         else if(choiceGrade == 2){
-            // 상대평가 메소드실행, 
-            // 매개변수(stdb, counts, code)(학생수 = counts[code])
             relativeGrade(stdb, counts, code);
         }
         else{
