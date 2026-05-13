@@ -179,8 +179,11 @@ public class MyApp
         for(int i = 0; i < n; i++){
 
             double totalScore = stdb[code][i].getTotalScore();
-
-            if(totalScore >= 90){
+            
+            if(stdb[code][i].getGrade().equals("F")){
+                continue;
+            }
+            else if(totalScore >= 90){
                 stdb[code][i].setGrade("A");
             }
             else if(totalScore >= 80){
@@ -217,8 +220,11 @@ public class MyApp
             }
             int rank = count + 1;
             double per = (double)rank / n * 100;
-
-            if(per <= 40){
+            
+            if(stdb[code][i].getGrade().equals("F")){
+                continue;
+            }
+            else if(per <= 40){
                 stdb[code][i].setGrade("A");
             }
             else if(per <= 75){
