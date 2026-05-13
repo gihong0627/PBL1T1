@@ -87,7 +87,13 @@ public class MyApp
         while(counts[code] <= 200){
 
             System.out.print("학생 등록시 1 종료시 0을 입력해주세요 : ");
-            int next = Integer.parseInt(gradeSC.nextLine());
+            int next;
+            try{
+                next = Integer.parseInt(gradeSC.nextLine());
+            }
+            catch(NumberFormatException e){
+                return "숫자를 입력해주세요";
+            }
 
             if(next == 0){
                 break;
