@@ -8,5 +8,5 @@
 프로젝트의 목적(PURPOSE OF PROJECT):
 버전 또는 작성일자(VERSION or DATE):
 이 프로젝트를 시작하는 방법(HOW TO START THIS PROJECT):
-제작자(AUTHORS):
+제작자(AUTHORS): 
 사용자 설명서(USER INSTRUCTIONS):
