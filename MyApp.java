@@ -80,11 +80,11 @@ public class MyApp
         if(code <0 || code >9){
             return "0~9 범위로 입력해주세요";
         }
-        else if(counts[code] > 200){
+        else if(counts[code] >= 200){
             return "해당 과목은 정윈(200명) 초과입니다";
         }
 
-        while(counts[code] <= 200){
+        while(counts[code] < 200){
 
             System.out.print("학생 등록시 1 종료시 0을 입력해주세요 : ");
             int next;
@@ -158,7 +158,13 @@ public class MyApp
             Student s = stdb[code][i];
             System.out.println(s.getStId() + " " + s.getName() + " | " + s.getTotalScore() + " | " + s.getGrade());
         }
-        // 통계 메소드 실행 위치
+
+        printStatistics(stdb, counts, code);
+        return "성적 출력 완료";
+    }
+    
+    public static void printStatistics(Student[][] stdb, int[] counts, int code){
+        int n = counts[code];
         double sum = 0;
         double min = stdb[code][0].getTotalScore();
         double max = stdb[code][0].getTotalScore();
@@ -184,8 +190,6 @@ public class MyApp
         System.out.println("최대 점수 : " + max);
         System.out.println("최소 점수 : " + min);
         System.out.println("-------------------------");
-        
-        return "성적 출력 완료";
     }
 
     /**

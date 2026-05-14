@@ -30,6 +30,7 @@ public class Student
         this.finalTest = finalTest;
         this.assignment = assignment;
         this.attendance = attendance;
+        this.grade = "";
         calcTotalScore(); 
     }
     
@@ -40,6 +41,9 @@ public class Student
     public void calcTotalScore() {
         this.totalScore = this.midTest * 0.35 + finalTest * 0.35
                         + assignment + attendance;
+        if(attendance <= 0){
+            this.grade = "F";
+        }
     }
     
     /**
