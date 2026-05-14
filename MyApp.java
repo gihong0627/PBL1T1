@@ -22,11 +22,11 @@ public class MyApp
 
         while(true){
 
-            System.out.println("-----성적 처리 프로그램-----");
+            System.out.println("\n-----성적 처리 프로그램-----");
             System.out.println("1.학생 등록 \t 2.학점 부여");
             System.out.println("3.성적 출력 \t 4.종료");
             System.out.println("-------------------------");
-            System.out.println("번호를 입력해주세요 : ");
+            System.out.print("번호를 입력해주세요 : ");
 
             int choice;
             try{
@@ -67,7 +67,7 @@ public class MyApp
      */
     public static String registerStudents(Student[][] stdb, int[] counts){
 
-        System.out.println("과목 코드(0~9)를 입력해주세요");
+        System.out.print("과목 코드(0~9)를 입력해주세요 : ");
 
         int code;
         try{
@@ -86,8 +86,14 @@ public class MyApp
 
         while(counts[code] <= 200){
 
-            System.out.println("학생 등록시 1 종료시 0을 입력해주세요");
-            int next = Integer.parseInt(gradeSC.nextLine());
+            System.out.print("학생 등록시 1 종료시 0을 입력해주세요 : ");
+            int next;
+            try{
+                next = Integer.parseInt(gradeSC.nextLine());
+            }
+            catch(NumberFormatException e){
+                return "숫자를 입력해주세요";
+            }
 
             if(next == 0){
                 break;
@@ -123,7 +129,7 @@ public class MyApp
      */
     public static String printGrades(Student[][] stdb, int[] counts){
         
-        System.out.println("과목 코드(0~9)를 입력해주세요");
+        System.out.print("과목 코드(0~9)를 입력해주세요 : ");
 
         int code;
         
@@ -144,7 +150,7 @@ public class MyApp
             return "등록된 학생이 없습니다";
         }
         
-        System.out.println(code + "번 과목 성적 리스트");
+        System.out.println("\n"+ code + "번 과목 성적 리스트");
         System.out.println("-------------------------");
         
         for(int i = 0; i < n; i++){
@@ -152,6 +158,7 @@ public class MyApp
             Student s = stdb[code][i];
             System.out.println(s.getStId() + " " + s.getName() + " | " + s.getTotalScore() + " | " + s.getGrade());
         }
+        // 통계 메소드 실행 위치
         System.out.println("-------------------------");
         
         return "성적 출력 완료";
@@ -172,8 +179,11 @@ public class MyApp
         for(int i = 0; i < n; i++){
 
             double totalScore = stdb[code][i].getTotalScore();
-
-            if(totalScore >= 90){
+            
+            if(stdb[code][i].getGrade().equals("F")){
+                continue;
+            }
+            else if(totalScore >= 90){
                 stdb[code][i].setGrade("A");
             }
             else if(totalScore >= 80){
@@ -210,11 +220,14 @@ public class MyApp
             }
             int rank = count + 1;
             double per = (double)rank / n * 100;
-
-            if(per <= 35){
+            
+            if(stdb[code][i].getGrade().equals("F")){
+                continue;
+            }
+            else if(per <= 40){
                 stdb[code][i].setGrade("A");
             }
-            else if(per <= 70){
+            else if(per <= 75){
                 stdb[code][i].setGrade("B");
             }
             else{
@@ -232,7 +245,7 @@ public class MyApp
      */
     public static String assignGrades(Student[][] stdb, int[] counts){
 
-        System.out.println("과목 코드(0~9)를 입력해주세요");
+        System.out.print("과목 코드(0~9)를 입력해주세요 : ");
 
         int code;
         try{
@@ -249,18 +262,14 @@ public class MyApp
             return "등록된 학생이 없습니다";
         }
 
-        System.out.println("1.절대평가 2. 상대평가 번호를 입력해주세요");
+        System.out.print("1.절대평가 2. 상대평가 번호를 입력해주세요 : ");
 
         int choiceGrade = Integer.parseInt(gradeSC.nextLine());
 
         if(choiceGrade == 1){
-            // 절대평가 메소드실행, 
-            // 매개변수(stdb, counts, code)(학생수 = counts[code])
             absoluteGrade(stdb, counts, code);
         }
         else if(choiceGrade == 2){
-            // 상대평가 메소드실행, 
-            // 매개변수(stdb, counts, code)(학생수 = counts[code])
             relativeGrade(stdb, counts, code);
         }
         else{
