@@ -3,7 +3,7 @@ import java.util.Scanner;
  * MyApp 성적 처리 소프트웨어 실행 클래스.
  *
  * @author (2021320032 임기홍 2020315044 허진영)
- * @version (2026 05 09)
+ * @version (2026 05 14)
  */
 public class MyApp
 {
@@ -159,6 +159,30 @@ public class MyApp
             System.out.println(s.getStId() + " " + s.getName() + " | " + s.getTotalScore() + " | " + s.getGrade());
         }
         // 통계 메소드 실행 위치
+        double sum = 0;
+        double min = stdb[code][0].getTotalScore();
+        double max = stdb[code][0].getTotalScore();
+        
+        for(int i = 0; i < n; i++){
+            double score = stdb[code][i].getTotalScore();
+            
+            sum = sum + score;
+            
+            if(score < min){
+                min = score;
+            }
+            
+            if(score > max){
+                max = score;
+            }
+        }
+        
+        double avg = sum / n;
+        
+        System.out.println("-------------------------");
+        System.out.println("평균 점수 : " + avg);
+        System.out.println("최대 점수 : " + max);
+        System.out.println("최소 점수 : " + min);
         System.out.println("-------------------------");
         
         return "성적 출력 완료";
