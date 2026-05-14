@@ -218,7 +218,7 @@ public class MyApp
                 stdb[code][i].setGrade("B");
             }
             else{
-                stdb[code][i].setGrade("C");
+                stdb[code][i].setGrade("F");
             }
         }
     }
