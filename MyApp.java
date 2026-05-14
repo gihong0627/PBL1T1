@@ -59,11 +59,11 @@ public class MyApp
     }
 
     /**
-     * 메소드 registerStudents
+     * 메소드 registerStudents 선택 과목의 2차원 배열에 학생들을 등록하는 메소드
      *
      * @param stdb 과목별 학생들이 저장되어있는 2차원 배열
      * @param counts 선택한 과목 코드 내 현재 학생수 파악을 위한 카운트 배열
-     * @return 문자열 반환
+     * @return 완료메세지 or 오류메세지
      */
     public static String registerStudents(Student[][] stdb, int[] counts){
 
@@ -121,11 +121,11 @@ public class MyApp
     }
 
     /**
-     * 메소드 printGrades
+     * 메소드 printGrades 선택 과목 학생들의 정보를 출력하는 메소드
      *
      * @param stdb 과목별 학생들이 저장되어있는 2차원 배열
      * @param counts 선택한 과목 코드 내 현재 학생수 파악을 위한 카운트 배열
-     * @return 문자열 반환
+     * @return 완료메세지 or 오류메세지
      */
     public static String printGrades(Student[][] stdb, int[] counts){
         
@@ -156,13 +156,21 @@ public class MyApp
         for(int i = 0; i < n; i++){
             
             Student s = stdb[code][i];
-            System.out.println(s.getStId() + " " + s.getName() + " | " + s.getTotalScore() + " | " + s.getGrade());
+            System.out.println(s.getStId() + " " + s.getName() + " | " 
+            + s.getTotalScore() + " | " + s.getGrade() + " | " + s.getRank() + "위");
         }
 
         printStatistics(stdb, counts, code);
         return "성적 출력 완료";
     }
     
+    /**
+     * 메소드 printStatistics 선택 과목 통계 정보를 구하여 출력하는 메소드
+     *
+     * @param stdb 과목별 학생들이 저장되어있는 2차원 배열
+     * @param counts 선택한 과목 코드 내 현재 학생수 파악을 위한 카운트 배열
+     * @param code 학점을 부여할 과목 코드
+     */
     public static void printStatistics(Student[][] stdb, int[] counts, int code){
         int n = counts[code];
         double sum = 0;
@@ -193,7 +201,7 @@ public class MyApp
     }
 
     /**
-     * 메소드 absoluteGrade
+     * 메소드 absoluteGrade 절대평가 기준 학점을 부여하는 메소드
      *
      * @param stdb 과목별 학생들이 저장되어있는 2차원 배열
      * @param counts 선택한 과목 코드 내 현재 학생수 파악을 위한 카운트 배열
@@ -205,6 +213,17 @@ public class MyApp
         int n = counts[code];
 
         for(int i = 0; i < n; i++){
+            
+            int count = 0;
+
+            for(int j = 0; j < n; j++){
+                if(stdb[code][j].getTotalScore() > stdb[code][i].getTotalScore()){
+                    count++;
+                }
+            }
+            int rank = count + 1;
+            
+            stdb[code][i].setRank(rank);
 
             double totalScore = stdb[code][i].getTotalScore();
             
@@ -227,7 +246,7 @@ public class MyApp
     }
 
     /**
-     * 메소드 예제 - 사용자에 맞게 주석을 바꾸십시오.
+     * 메소드 relativeGrade 상대평가 기준 학점을 부여하는 메소드
      *
      * @param stdb 과목별 학생들이 저장되어있는 2차원 배열
      * @param counts 선택한 과목 코드 내 현재 학생수 파악을 위한 카운트 배열
@@ -247,6 +266,9 @@ public class MyApp
                 }
             }
             int rank = count + 1;
+            
+            stdb[code][i].setRank(rank);
+            
             double per = (double)rank / n * 100;
             
             if(stdb[code][i].getGrade().equals("F")){
@@ -265,11 +287,11 @@ public class MyApp
     }
 
     /**
-     * 메소드 assignGrades
+     * 메소드 assignGrades 절대평가, 상대평가를 선택하여 선택한 메소드를 실행
      *
-     * @param stdb 파라미터
-     * @param counts 파라미터
-     * @return 반환값
+     * @param stdb 과목별 학생들이 저장되어있는 2차원 배열
+     * @param counts 선택한 과목 코드 내 현재 학생수 파악을 위한 카운트 배열
+     * @return 완료메세지 or 오류메세지 
      */
     public static String assignGrades(Student[][] stdb, int[] counts){
 

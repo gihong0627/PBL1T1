@@ -16,6 +16,7 @@ public class Student
     private int attendance; 
     private double totalScore; 
     private String grade;
+    private int rank;
 
     /**
      * Student 클래스의 객체 생성자
@@ -89,5 +90,23 @@ public class Student
      */
     public String getGrade() { 
         return grade; 
+    }
+    
+    /**
+     * 메소드 setRank 석차를 부여하는 메소드
+     *
+     * @param grade 정수형으로 이루어진 석차 순위
+     */
+    public void setRank(int rank) {
+        this.rank = rank;
+    } 
+    
+    /**
+     * 메소드 getRank 석차를 반환하는 메소드
+     *
+     * @return 학점 등급
+     */
+    public int getRank() { 
+        return rank; 
     }
 }
