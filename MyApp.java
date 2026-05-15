@@ -3,7 +3,7 @@ import java.util.Scanner;
  * MyApp 성적 처리 소프트웨어 실행 클래스.
  *
  * @author (2021320032 임기홍 2020315044 허진영 2021320020 차인택)
- * @version (2026 05 14)
+ * @version (2026 05 15)
  */
 public class MyApp
 {
