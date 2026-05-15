@@ -81,7 +81,7 @@ public class MyApp
             return "0~9 범위로 입력해주세요";
         }
         else if(counts[code] >= 200){
-            return "해당 과목은 정윈(200명) 초과입니다";
+            return "해당 과목은 정원(200명) 초과입니다";
         }
 
         while(counts[code] < 200){
@@ -115,7 +115,7 @@ public class MyApp
 
             counts[code]++;
 
-            System.out.println("등록 완료. 현재"+ counts[code] + "명");        
+            System.out.println("등록 완료. 현재 "+ counts[code] + "명");        
         }
         return "학생 등록 종료"; 
     }
@@ -314,8 +314,15 @@ public class MyApp
 
         System.out.print("1.절대평가 2. 상대평가 번호를 입력해주세요 : ");
 
-        int choiceGrade = Integer.parseInt(gradeSC.nextLine());
-
+        int choiceGrade;
+        try{
+            choiceGrade = Integer.parseInt(gradeSC.nextLine());
+        }
+        catch(NumberFormatException e){
+            return "숫자를 입력해주세요";
+        }
+        
+        
         if(choiceGrade == 1){
             absoluteGrade(stdb, counts, code);
         }
